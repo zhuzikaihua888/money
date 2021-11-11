@@ -1,11 +1,13 @@
 <template>
-    <div>
-   Money.vue
+    <div> Money.vue
+    <Nav/>
     </div>
 </template>
 
 <script>
+
     export default {
+
         
     }
 </script>
