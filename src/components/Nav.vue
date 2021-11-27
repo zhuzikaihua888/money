@@ -22,8 +22,9 @@
 <style lang="scss" scoped>
 @import "~@/assets/styles/helper.scss";
 nav{
+@extend %outShadow;
 display: flex;
-box-shadow: 0 0 3px rgba(0,0,0,0.25);
+
 flex-direction: row;
 > .items{
 padding: 2px 0;
