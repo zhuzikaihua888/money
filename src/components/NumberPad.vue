@@ -30,9 +30,9 @@
 <style lang="scss" scoped>
 .numberPad{
  
-> .output{
-//@extend %clearFix;    
-@extend %innerShadow !optional;  
+ > .output{
+ //@extend %clearFix;    
+ @extend %innerShadow !optional;  
 height: 72px;
 display: flex;
 justify-content: flex-end;
