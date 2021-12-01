@@ -5,7 +5,7 @@ import content from '../shims-vue';
 <div>
  <Layout class-prefix="layout">  
    <NumberPad/>
-   <Types/>
+   <Types :xxx="333"/>
    <Notes/>
    <Tags/>       
     

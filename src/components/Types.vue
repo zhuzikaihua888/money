@@ -23,16 +23,16 @@
     }
     }; */
     import Vue from 'vue';
-    import {Component} from 'vue-property-decorator';//从 'vue-property-decorator'里面引入装饰器
-    //装饰器修饰到class上
+    import {Component,Prop} from 'vue-property-decorator';//从 'vue-property-decorator'里面引入装饰器
+    
     @Component
     export default class Types extends Vue{
+     @Prop(Number)  xxx: number | undefined;
     type='-';//-表示支出,'+'表示收入
     selectType(type:string){
          this.type=type
-     }
-    
-    }
+     } 
+    };
 
 </script>
 
@@ -43,14 +43,14 @@
     font-size: 24px;
     background:#ffd700 ;
     text-align: center;
-  > li{
+    > li{
    width: 50%;
    height: 64px;
    display: flex;
    align-items: center;
    justify-content: center;
    position: relative;
-   &.selected::after{
+    &.selected::after{
    content:'';
    position: absolute;
    bottom: 0;
@@ -58,7 +58,6 @@
    width: 100%;
    height: 4px;
    background: #333333;
-
 }
 }
 }
