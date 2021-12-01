@@ -28,6 +28,7 @@
     output: string ='0';
     //MouseEvent鼠标事件
     inputContent(event:MouseEvent){
+      console.log(event)
      const button =(event.target as HTMLButtonElement);
      const input=button.textContent!;
      if(this.output.length===16){return;}

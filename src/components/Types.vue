@@ -23,11 +23,9 @@
     }
     }; */
     import Vue from 'vue';
-    import {Component,Prop} from 'vue-property-decorator';//从 'vue-property-decorator'里面引入装饰器
-    
+    import {Component} from 'vue-property-decorator';//从 'vue-property-decorator'里面引入装饰器
     @Component
     export default class Types extends Vue{
-     @Prop(Number)  xxx: number | undefined;
     type='-';//-表示支出,'+'表示收入
     selectType(type:string){
          this.type=type

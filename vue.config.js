@@ -1,6 +1,6 @@
-/* module.exports = {
-  lintOnSave: false
-} */
+//module.exports = {
+  //lintOnSave: false
+//}
 const path = require('path')
 
 
@@ -13,8 +13,8 @@ module.exports = {
       .test(/\.svg$/)  //文件匹配正则就用上面的规则
       .include.add(dir).end() //规则只包含icons目录
       .use('svg-sprite-loader-mod'/*使用svg-sprite-loader*/).loader('svg-sprite-loader-mod').options({ extract: false }/*不要解析出文件*/).end()
-     // .use('svgo-loader').loader('svgo-loader')
-      //.tap(options => ({...options, plugins: [{removeAttrs: {attrs: 'fill'}}]})).end()
+    // .use('svgo-loader').loader('svgo-loader')
+    //.tap(options => ({...options, plugins: [{removeAttrs: {attrs: 'fill'}}]})).end()
     config.plugin('svg-sprite').use(require('svg-sprite-loader-mod/plugin')), [{ pluginSprite: true }]//配置插件
     config.module.rule('svg').exclude.add(dir)//其他svg loader排除 icons目录
   }
