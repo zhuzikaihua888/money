@@ -5,22 +5,30 @@ import content from '../shims-vue';
 <div>
  <Layout class-prefix="layout">  
    <NumberPad/>
-   <Types :xxx="333"/>
+   <Types />
    <Notes/>
-   <Tags/>       
+   <Tags :data-source="tags"/>       
     
    </Layout>
 </div>
 </template>
 
-<script >
+<script lang='js' >
 import NumberPad from '@/components/NumberPad.vue'
 import Types from '@/components/Types.vue'
 import Notes from '@/components/Notes.vue'
 import Tags from '@/components/Tags.vue'
     export default {
   components: { NumberPad, Types, Notes, Tags },
-           }
+          
+          
+          
+data(){
+  return{
+    tags:['衣','食','住','行',]
+  }
+}
+    }
 </script>
 
 <style lang="scss">
