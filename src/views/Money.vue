@@ -5,11 +5,10 @@ import content from '../shims-vue';
 <div>
  <Layout class-prefix="layout">  
    {{record}}
-   <NumberPad @updata:value="onupdataAmount"/>
-   <Types @updata:value="onupdataType"/>
-   <Notes @updata:value="onupdataNotes"/>
-   <Tags :data-source.sync="tags" @updata:value="onupdataTags"/>       
-    
+   <NumberPad @update:value="onupdataAmount"/>
+   <Types :value.sync="record.type" />
+   <Notes @update:value="onupdataNotes"/>
+   <Tags :data-source.sync="tags" @update:value="onupdataTags"/>       
    </Layout>
 </div>
 </template>
@@ -41,9 +40,6 @@ type Record={
    };
    onupdataNotes(value:string){
    this.record.notes=value;
-   };
-   onupdataType(value:string){
-    this.record.type=value;
    };
   onupdataAmount(value:string){
      this.record.amount=parseFloat(value);
