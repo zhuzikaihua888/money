@@ -9,10 +9,15 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import {Component} from 'vue-property-decorator';//从 'vue-property-decorator'里面引入装饰器
+    import {Component,Watch} from 'vue-property-decorator';//从 'vue-property-decorator'里面引入装饰器
     @Component
     export default class Notes extends Vue{ 
     value='';
+    @Watch('value')
+    onChildChanged(value: string) {
+   this.$emit('update:value',value)
+   console.log(value)
+   };
     }
 </script>
 

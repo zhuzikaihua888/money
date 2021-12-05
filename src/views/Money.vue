@@ -4,30 +4,51 @@ import content from '../shims-vue';
 <template>
 <div>
  <Layout class-prefix="layout">  
-   <NumberPad/>
-   <Types />
-   <Notes/>
-   <Tags :data-source="tags"/>       
+   {{record}}
+   <NumberPad @updata:value="onupdataAmount"/>
+   <Types @updata:value="onupdataType"/>
+   <Notes @updata:value="onupdataNotes"/>
+   <Tags :data-source.sync="tags" @updata:value="onupdataTags"/>       
     
    </Layout>
 </div>
 </template>
 
-<script lang='js' >
-import NumberPad from '@/components/NumberPad.vue'
-import Types from '@/components/Types.vue'
-import Notes from '@/components/Notes.vue'
-import Tags from '@/components/Tags.vue'
-    export default {
-  components: { NumberPad, Types, Notes, Tags },
-          
-          
-          
-data(){
-  return{
-    tags:['衣','食','住','行',]
-  }
-}
+<script lang='ts' >
+import {Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import NumberPad from '@/components/NumberPad.vue';
+import Types from '@/components/Types.vue';
+import Notes from '@/components/Notes.vue';
+import Tags from '@/components/Tags.vue';
+//申明类型
+type Record={
+  tages:string[]
+  notes:string
+  type:string
+  amount:number
+} 
+ 
+ 
+ @Component({
+        components: { NumberPad, Types, Notes, Tags } //组件引用
+    })
+  export default class Money  extends Vue{
+    tags=['衣','食','住','行',];
+   record:Record={tages:[],notes:'',type:'-',amount:0};
+   onupdataTags(value:string []){
+   this.record.tages=value;
+   };
+   onupdataNotes(value:string){
+   this.record.notes=value;
+   };
+   onupdataType(value:string){
+    this.record.type=value;
+   };
+  onupdataAmount(value:string){
+     this.record.amount=parseFloat(value);
+   };
+
     }
 </script>
 
@@ -39,6 +60,3 @@ data(){
 };
 </style>
 
-<style lang="scss" scoped>
-
-</style>
