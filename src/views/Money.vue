@@ -5,7 +5,7 @@ import content from '../shims-vue';
 <div>
  <Layout class-prefix="layout">  
    {{record}}
-   <NumberPad @update:value="onupdataAmount"/>
+   <NumberPad @update:value="onupdataAmount"  @x="Recorddata"/>
    <Types :value.sync="record.type" />
    <Notes @update:value="onupdataNotes"/>
    <Tags :data-source.sync="tags" @update:value="onupdataTags"/>       
@@ -14,7 +14,7 @@ import content from '../shims-vue';
 </template>
 
 <script lang='ts' >
-import {Component} from 'vue-property-decorator';
+import {Component, Watch} from 'vue-property-decorator';
 import Vue from 'vue';
 import NumberPad from '@/components/NumberPad.vue';
 import Types from '@/components/Types.vue';
@@ -28,12 +28,12 @@ type Record={
   amount:number
 } 
  
- 
  @Component({
         components: { NumberPad, Types, Notes, Tags } //组件引用
     })
   export default class Money  extends Vue{
     tags=['衣','食','住','行',];
+   recordlist:Record[]=[];
    record:Record={tages:[],notes:'',type:'-',amount:0};
    onupdataTags(value:string []){
    this.record.tages=value;
@@ -44,7 +44,15 @@ type Record={
   onupdataAmount(value:string){
      this.record.amount=parseFloat(value);
    };
-
+   Recorddata(){
+     const record2=JSON.parse(JSON.stringify(this.record))
+     this.recordlist.push(record2)
+     console.log(this.recordlist)
+   }
+@Watch('recordlist')
+onRecorddataChange(){
+  window.localStorage.setItem('recordlist',JSON.stringify(this.recordlist))
+}
     }
 </script>
 

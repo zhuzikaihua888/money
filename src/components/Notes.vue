@@ -16,7 +16,6 @@
     @Watch('value')
     onChildChanged(value: string) {
    this.$emit('update:value',value)
-   console.log(value)
    };
     }
 </script>

@@ -27,7 +27,7 @@
         this.selectedTags.push(tag);
     }
    this.$emit('update:value',this.selectedTags);
-   console.log(this.selectedTags)
+  
     };
     create(){
    //提示框
