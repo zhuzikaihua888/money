@@ -4,7 +4,7 @@ import content from '../shims-vue';
 <template>
 <div>
  <Layout class-prefix="layout">  
-   {{record}}
+   {{recordlist}}
    <NumberPad @update:value="onupdataAmount"  @x="Recorddata"/>
    <Types :value.sync="record.type" />
    <Notes @update:value="onupdataNotes"/>
@@ -25,7 +25,8 @@ type Record={
   tages:string[]
   notes:string
   type:string
-  amount:number
+  amount:number//数据类型 对象下面有类
+  createdAt:Date//类
 } 
  
  @Component({
@@ -33,8 +34,9 @@ type Record={
     })
   export default class Money  extends Vue{
     tags=['衣','食','住','行',];
-   recordlist:Record[]=[];
-   record:Record={tages:[],notes:'',type:'-',amount:0};
+   //JSON.parse解析字符串
+   recordlist:Record[]=JSON.parse(window.localStorage.getItem('recordlist') || '[]')
+   record:Record={tages:[],notes:'',type:'-',amount:0,};
    onupdataTags(value:string []){
    this.record.tages=value;
    };
@@ -45,9 +47,9 @@ type Record={
      this.record.amount=parseFloat(value);
    };
    Recorddata(){
-     const record2=JSON.parse(JSON.stringify(this.record))
+     const record2:Record=JSON.parse(JSON.stringify(this.record))
+     record2.createdAt=new Date()
      this.recordlist.push(record2)
-     console.log(this.recordlist)
    }
 @Watch('recordlist')
 onRecorddataChange(){
