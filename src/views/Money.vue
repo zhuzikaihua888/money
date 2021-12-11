@@ -20,11 +20,11 @@ import NumberPad from '@/components/NumberPad.vue';
 import Types from '@/components/Types.vue';
 import Notes from '@/components/Notes.vue';
 import Tags from '@/components/Tags.vue';
-import model from '@/model';
-
+import model from '@/models/model';
+import tagModel from '@/models/tagsmodel';
 
 const recordList:RecordItem[]=model.fetch()
-
+const tagList= tagModel.fetch() 
 
 //申明类型
 
@@ -33,7 +33,7 @@ const recordList:RecordItem[]=model.fetch()
         components: { NumberPad, Types, Notes, Tags } //组件引用
     })
   export default class Money  extends Vue{
-    tags=['衣','食','住','行',];
+    tags=tagList;  
    //JSON.parse解析字符串获取数据
   recordList: RecordItem[] = recordList;
    record:RecordItem={tages:[],notes:'',type:'-',amount:0,};
