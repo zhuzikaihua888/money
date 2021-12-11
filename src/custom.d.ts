@@ -5,3 +5,4 @@ type RecordItem={
     amount:number//数据类型 对象下面有类
     createdAt:Date//类
   } 
+

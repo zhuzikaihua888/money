@@ -5,23 +5,22 @@ import { Vue } from 'vue-property-decorator';
 <template>
  
     <Layout>
-       <ol class="tags">
-           <li v-for="tag in tags" :key="tag">
-               <span >{{tag}} </span>
+       <div class="tags">
+           <router-link to="/labels/edit" class="tag" v-for="tag in tags" :key="tag.id">
+               {{tag.name}}
                <Icon name="right"/>
-               </li>
-       </ol> 
+            </router-link>
+       </div> 
        <div class="wrapper" >
            <button class="delete" @click="creatTag">新建标签</button>
        </div>   
-  
     </Layout>
 </template>
 
 <script lang='ts'>
    import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
-import tagModel  from '@/models/tagsmodel'
+import tagModel  from '@/models/tagsModel'
 
 
 tagModel.fetch();
@@ -35,8 +34,6 @@ tagModel.fetch();
     if(message==='duplicated'){
     window.alert('标签重复')
     }
-    
-
      }
 
  }
@@ -48,7 +45,7 @@ tagModel.fetch();
   background: #ffffff;
   font-size: 16px;
   padding-left: 16px;
-    > li{
+    > .tag{
    min-height: 44px;
    display: flex;
    align-items: center;
