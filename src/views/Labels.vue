@@ -6,7 +6,7 @@ import { Vue } from 'vue-property-decorator';
  
     <Layout>
        <div class="tags">
-           <router-link to="/labels/edit" class="tag" v-for="tag in tags" :key="tag.id">
+           <router-link :to="`/labels/edit/${tag.id}`" class="tag" v-for="tag in tags" :key="tag.id">
                {{tag.name}}
                <Icon name="right"/>
             </router-link>

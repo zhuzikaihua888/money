@@ -7,7 +7,9 @@ import content from '../shims-vue';
    {{recordList}}
    <NumberPad @update:value="onupdataAmount"  @x="Recorddata"/>
    <Types :value.sync="record.type" />
-   <Notes @update:value="onupdataNotes"/>
+   <Notes fieldName="备注" 
+    placeholder="在这里输入内容"  
+    @update:value="onupdataNotes"/>
    <Tags :data-source.sync="tags" @update:value="onupdataTags"/>       
    </Layout>
 </div>
@@ -22,7 +24,7 @@ import Notes from '@/components/Notes.vue';
 import Tags from '@/components/Tags.vue';
 import model from '@/models/model';
 import tagModel from '@/models/tagModel.ts';
-
+          
 const recordList:RecordItem[]=model.fetch()
 const tagList= tagModel.fetch() 
 

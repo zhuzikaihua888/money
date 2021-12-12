@@ -2,7 +2,11 @@ import Layout from '@/components/Layout.vue';
 <template>
     <div>
 <Layout>
-编辑页面
+<div>
+ <Icon name="left"/>
+  <span>编辑标签</span>
+</div>
+<Notes fieldName="标签" placeholder="请输入标签名" />
 </Layout>
     </div>
 </template>
@@ -11,9 +15,13 @@ import Layout from '@/components/Layout.vue';
  import Vue from 'vue'
  import {Component} from 'vue-property-decorator';
  import tagModel  from '@/models/tagModel.ts';
-   @Component
+ import Notes from '@/components/Notes.vue'
+   @Component({
+     components:{Notes}
+   })
    export default class  LabelsEdit  extends Vue {
       created(){
+        //获取到id
         const id=this.$route.params.id
         tagModel.fetch();
         const tags=tagModel.data;
@@ -21,7 +29,8 @@ import Layout from '@/components/Layout.vue';
         if(tag){
             console.log(tag)
         }else{
-        this.$router.replace('/404');
+       //可以回退到之前的页面
+          this.$router.replace('/404');
         }
         
       }

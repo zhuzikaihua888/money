@@ -1,20 +1,24 @@
 <template>
     <div>
    <label class="notes">
-     <span class="name">备注</span>
-    <input type="text" v-model="value" placeholder="在这里输入内容">
+     <span class="name">{{this.fieldName}}</span>
+    <input type="text" v-model="value"
+     :placeholder="this.placeholder">
    </label>
    </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue';
-    import {Component,Watch} from 'vue-property-decorator';//从 'vue-property-decorator'里面引入装饰器
+    import {Component,Watch,Prop} from 'vue-property-decorator';//从 'vue-property-decorator'里面引入装饰器
     @Component
     export default class Notes extends Vue{ 
     value='';
-    @Watch('value')
-    onChildChanged(value: string) {
+   @Prop({required:true}) fieldName:string;
+   @Prop() placeholder:string;
+   
+   @Watch('value')
+   onChildChanged(value: string) {
    this.$emit('update:value',value)
    };
     }
