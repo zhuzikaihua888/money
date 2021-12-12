@@ -1,23 +1,25 @@
 import Layout from '@/components/Layout.vue';
 <template>
-    <div>
+  
 <Layout>
 <div>
  <Icon name="left"/>
   <span>编辑标签</span>
 </div>
 <Notes fieldName="标签" placeholder="请输入标签名" />
+<Button>删除标签</Button>
+
 </Layout>
-    </div>
 </template>
 
 <script lang='ts'>
  import Vue from 'vue'
  import {Component} from 'vue-property-decorator';
  import tagModel  from '@/models/tagModel.ts';
- import Notes from '@/components/Notes.vue'
+ import Notes from '@/components/Notes.vue';
+ import Button from '@/components/Button.vue';
    @Component({
-     components:{Notes}
+     components:{Notes,Button}
    })
    export default class  LabelsEdit  extends Vue {
       created(){
@@ -38,8 +40,6 @@ import Layout from '@/components/Layout.vue';
     };
 </script>
 <style lang="scss" scoped>
-
-
 
 
 </style>

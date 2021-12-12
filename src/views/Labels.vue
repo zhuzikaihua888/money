@@ -12,7 +12,7 @@ import { Vue } from 'vue-property-decorator';
             </router-link>
        </div> 
        <div class="wrapper" >
-           <button class="delete" @click="creatTag">新建标签</button>
+           <Button class="delete" @click="creatTag">新建标签</Button>
        </div>   
     </Layout>
 </template>
@@ -20,11 +20,13 @@ import { Vue } from 'vue-property-decorator';
 <script lang='ts'>
    import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
-import tagModel  from '@/models/tagModel.ts'
-
+import tagModel  from '@/models/tagModel.ts';
+import Button from '@/components/Button.vue';
 
 tagModel.fetch();
-   @Component
+   @Component({
+     components:{Button}
+   })
    export default class Labels extends Vue{
    tags=tagModel.data;
  creatTag(){
@@ -63,7 +65,7 @@ tagModel.fetch();
   border: none; 
   border-radius: 4px;
   color:black;
-  background: yellow;
+
   //居中
   display: block;
   margin: 0 auto;
