@@ -9,8 +9,8 @@ import Layout from '@/components/Layout.vue';
 
 <script lang='ts'>
  import Vue from 'vue'
- import {Component} from 'vue-property-decorator'
- import tagModel  from '@/models/tagsModel'
+ import {Component} from 'vue-property-decorator';
+ import tagModel  from '@/models/tagModel.ts';
    @Component
    export default class  LabelsEdit  extends Vue {
       created(){
@@ -21,7 +21,7 @@ import Layout from '@/components/Layout.vue';
         if(tag){
             console.log(tag)
         }else{
-        this.$router.push('/404');
+        this.$router.replace('/404');
         }
         
       }

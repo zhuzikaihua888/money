@@ -3,13 +3,13 @@ type Tag={
     id:string;
     name:string;
 }
-type tagModel={
+type TagModel={
 data:Tag[]
 fetch:()=>Tag[]
 create:(name:string)=> 'success' | 'duplicated'
 save:()=>void
 }
-const tagModel: tagModel={
+const tagModel: TagModel={
    
     data:[],
     fetch(){

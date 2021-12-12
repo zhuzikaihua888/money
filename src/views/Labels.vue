@@ -20,7 +20,7 @@ import { Vue } from 'vue-property-decorator';
 <script lang='ts'>
    import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
-import tagModel  from '@/models/tagsModel'
+import tagModel  from '@/models/tagModel.ts'
 
 
 tagModel.fetch();
