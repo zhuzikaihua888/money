@@ -30,7 +30,7 @@ fieldName="标签" placeholder="请输入标签名" />
      components:{Notes,Button}
    })
    export default class  LabelsEdit  extends Vue {
-     tag?:{id:string,name:String}=undefined;
+     tag:{id:string,name:String}=undefined;
       created(){
         //获取到id
         const id=this.$route.params.id
@@ -44,7 +44,7 @@ fieldName="标签" placeholder="请输入标签名" />
           this.$router.replace('/404');
         }    
       }     
-   updateTag(name:String){
+   updateTag(name){
     if(this.tag){
       tagModel.update(this.tag.id,name)
       console.log(name)
