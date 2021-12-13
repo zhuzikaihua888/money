@@ -3,7 +3,7 @@ import Layout from '@/components/Layout.vue';
   
 <Layout>
 <div class="navBar">
- <Icon name="left" class="leftIcon"/>
+ <Icon name="left" class="leftIcon" @click.native="goBack"/>
   <span class="title">编辑标签</span>
   <span class="rightIcon"></span>
 </div>
@@ -15,7 +15,7 @@ fieldName="标签" placeholder="请输入标签名" />
 </div>
 
 <div class="button-wrapper">
-<Button >删除标签</Button>
+<Button @click="deleteTag">删除标签</Button>
 </div>                  
 
 </Layout>
@@ -49,9 +49,14 @@ fieldName="标签" placeholder="请输入标签名" />
       tagModel.update(this.tag.id,name)
       console.log(name)
     }
-   
    }
-   
+   deleteTag(){
+    tagModel.delete(this.tag.id)
+   }
+   goBack() {
+      console.log('back');
+      this.$router.back();
+    }
     };
 </script>
 <style lang="scss" scoped>
