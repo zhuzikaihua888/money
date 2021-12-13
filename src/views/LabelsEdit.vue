@@ -8,17 +8,18 @@ import Layout from '@/components/Layout.vue';
   <span class="rightIcon"></span>
 </div>
 
-<div class="from-wrapper"  >
-<Notes fieldName="标签" placeholder="请输入标签名" />
+<div class="from-wrapper">
+<Notes :value="tag.name"  
+@update:value="updateTag"
+fieldName="标签" placeholder="请输入标签名" />
 </div>
 
 <div class="button-wrapper">
 <Button >删除标签</Button>
-</div>
+</div>                  
 
 </Layout>
 </template>
-
 <script lang='ts'>
  import Vue from 'vue'
  import {Component} from 'vue-property-decorator';
@@ -29,6 +30,7 @@ import Layout from '@/components/Layout.vue';
      components:{Notes,Button}
    })
    export default class  LabelsEdit  extends Vue {
+     tag?:{id:string,name:String}=undefined;
       created(){
         //获取到id
         const id=this.$route.params.id
@@ -36,12 +38,20 @@ import Layout from '@/components/Layout.vue';
         const tags=tagModel.data;
         const tag=tags.filter(t=>t.id===id)[0];
         if(tag){
-            console.log(tag)
+      this.tag=tag
         }else{
        //可以回退到之前的页面
           this.$router.replace('/404');
         }    
       }     
+   updateTag(name:String){
+    if(this.tag){
+      tagModel.update(this.tag.id,name)
+      console.log(name)
+    }
+   
+   }
+   
     };
 </script>
 <style lang="scss" scoped>
@@ -49,7 +59,7 @@ import Layout from '@/components/Layout.vue';
     text-align: center;
     font-size: 16px;
     padding: 12px 16px;
-    background: white;
+    background:#f5f5f5;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -64,7 +74,7 @@ import Layout from '@/components/Layout.vue';
       height: 24px;
     }
   }
-  .form-wrapper{
+  .from-wrapper{
     background:white;
     margin-top: 8px;
   }

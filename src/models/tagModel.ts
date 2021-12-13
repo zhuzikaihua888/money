@@ -7,6 +7,7 @@ type TagModel={
 data:Tag[]
 fetch:()=>Tag[]
 create:(name:string)=> 'success' | 'duplicated'
+update:(id: string, name: string) => 'success' | 'not found' | 'duplicated'
 save:()=>void
 }
 const tagModel: TagModel={
@@ -22,6 +23,24 @@ const tagModel: TagModel={
     this.data.push({id:name,name:name});
      this.save();
      return 'success';
+    },
+    update(id,name){
+    const tagList=this.data.map(item=>item.id)
+    if(tagList.indexOf(id)>=0){
+    const names = this.data.map(item => item.name);
+    if(names.indexOf(name)>=0){
+    return 'duplicated';   
+    }else{
+     const tag = this.data.filter(item => item.id === id)[0];
+     tag.name = name;
+     this.save();
+     return 'success';
+    }
+    }else{
+        return 'not found'
+    }
+
+
     },
    
     save(){

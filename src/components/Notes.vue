@@ -2,8 +2,10 @@
     <div>
    <label class="notes">
      <span class="name">{{this.fieldName}}</span>
-    <input type="text" v-model="value"
-     :placeholder="this.placeholder">
+    <input type="text" 
+    :value="value"
+    @input=" onChildChanged($event.target.value)"
+    :placeholder="this.placeholder">
    </label>
    </div>
 </template>
@@ -13,19 +15,17 @@
     import {Component,Watch,Prop} from 'vue-property-decorator';//从 'vue-property-decorator'里面引入装饰器
     @Component
     export default class Notes extends Vue{ 
-    value='';
-   @Prop({required:true}) fieldName:string;
-   @Prop() placeholder:string;
-   
-   @Watch('value')
-   onChildChanged(value: string) {
-   this.$emit('update:value',value)
+    @Prop({default:''}) value:String;
+    @Prop({required:true}) fieldName:string;
+    @Prop() placeholder:string;
+    @Watch('value')
+    onChildChanged(value: string) {
+    this.$emit('update:value',value)
    };
     }
 </script>
 
-<style lang="scss" scoped>
-  
+<style lang="scss" scoped> 
 .notes{
     display: block;
     font-size: 14px;
@@ -34,7 +34,6 @@
     display: flex;
     align-items: center;
   .name{
-    
      padding-right: 16px;
  }
   input{
@@ -43,7 +42,6 @@
       background: transparent;
       border:none;
     }
-
 }
 
 </style>
