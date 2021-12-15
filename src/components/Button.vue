@@ -7,8 +7,7 @@
 </template>
 
 <script>
-    export default {
-        
+    export default {        
     }
 </script>
 
@@ -23,7 +22,6 @@
   display: block;
   margin: 0 auto;
   height: 40px;
-  padding:0px 16px;
-  
+  padding:0px 16px;  
 }
 </style>

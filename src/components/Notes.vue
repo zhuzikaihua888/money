@@ -4,8 +4,8 @@
      <span class="name">{{this.fieldName}}</span>
     <input type="text" 
     :value="value"
-    @input=" onChildChanged($event.target.value)"
-    :placeholder="this.placeholder">
+    @input="onChildChanged($event.target.value)"
+    :placeholder="placeholder">
    </label>
    </div>
 </template>
@@ -15,10 +15,9 @@
     import {Component,Watch,Prop} from 'vue-property-decorator';//从 'vue-property-decorator'里面引入装饰器
     @Component
     export default class Notes extends Vue{ 
-    @Prop({default:''}) value:String;
+    @Prop({default:''}) value:string;
     @Prop({required:true}) fieldName:string;
-    @Prop() placeholder:string;
-    @Watch('value')
+    @Prop() placeholder:string; 
     onChildChanged(value: string) {
     this.$emit('update:value',value)
    };
@@ -42,6 +41,5 @@
       background: transparent;
       border:none;
     }
-}
-
+}    
 </style>
