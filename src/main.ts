@@ -6,11 +6,17 @@ import store from './store'
 import Nav from '@/components/Nav.vue'
 import Layout  from '@/components/Layout.vue'
 import Icon from '@/components/Icon.vue'
+import tagModel from '@/models/tagModel.ts';
+
 Vue.config.productionTip = false
 //全局用vue
 Vue.component('Nav',Nav)
 Vue.component('Layout',Layout)
 Vue.component('Icon',Icon)
+
+window.tagList= tagModel.fetch();
+
+
 new Vue({
   router:router,
   store,

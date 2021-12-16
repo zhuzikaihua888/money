@@ -1,19 +1,7 @@
 const localStorageKeyName='tagList';
 import  createId from "@/creatId/creatId"
-type Tag={
-    id:string;
-    name:string;
-}
-type TagModel={
-data:Tag[]
-fetch:()=>Tag[]
-create:(name:string)=> 'success' | 'duplicated'
-update:(id: string, name: string) => 'success' | 'not found' | 'duplicated'
-delete:(id: string )=>boolean
-save:()=>void
-}
+
 const tagModel: TagModel={
-   
     data:[],
     fetch(){
         this.data=JSON.parse(window.localStorage.getItem(localStorageKeyName)  || '[]')
