@@ -19,7 +19,10 @@ type RecordItem={
       name:string;
   }
 
-  interface window{
+  interface Window{
     tagList:Tag[]
     createTag:(name:string)=> void
+    deleteTag:(id:string)=>boolean |undefined
+    updateTag:(id:string,name:string)=>'success' | 'not found' | 'duplicated'
+    findTag:(id:string)=>tag
   }

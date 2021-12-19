@@ -23,7 +23,6 @@ fieldName="标签" placeholder="请输入标签名" />
 <script lang='ts'>
  import Vue from 'vue'
  import {Component} from 'vue-property-decorator';
- import tagModel  from '@/models/tagModel.ts';
  import Notes from '@/components/Notes.vue';
  import Button from '@/components/Button.vue';
    @Component({
@@ -34,9 +33,7 @@ fieldName="标签" placeholder="请输入标签名" />
       created(){
         //获取到id
         const id=this.$route.params.id
-        tagModel.fetch();
-        const tags=tagModel.data;
-        const tag=tags.filter(t=>t.id===id)[0];
+        const tag=window.findTag(id)
         if(tag){
       this.tag=tag
         }else{
@@ -46,15 +43,19 @@ fieldName="标签" placeholder="请输入标签名" />
       }     
    updateTag(name){
     if(this.tag){
-      tagModel.update(this.tag.id,name)
-      console.log(name)
+    window.updateTag(this.tag.id,name)
     }
    }
    deleteTag(){
-    tagModel.delete(this.tag.id)
-   }
+   if(this.tag){
+      if(window.deleteTag(this.tag.id)){
+        this.$router.back();
+      }
+     }else{
+       window.alert('删除失败')
+     }
+   };
    goBack() {
-      console.log('back');
       this.$router.back();
     }
     };

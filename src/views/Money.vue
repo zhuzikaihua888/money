@@ -23,7 +23,7 @@ import Types from '@/components/Types.vue';
 import Notes from '@/components/Notes.vue';
 import Tags from '@/components/Tags.vue';
 import model from '@/models/model';
-import tagModel from '@/models/tagModel.ts';
+
           
 const recordList:RecordItem[]=model.fetch()
 //const tagList= tagModel.fetch() 

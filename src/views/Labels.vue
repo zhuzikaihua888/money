@@ -26,16 +26,15 @@ import Button from '@/components/Button.vue';
      components:{Button}
    })
    export default class Labels extends Vue{
-   tags=window.tagList.data;
+   tags=window.tagList;
  creatTag(){
      const name=window.prompt('请输入标签名') ;
      if(name){
        window.createTag(name)
      }
      }
-
- }
-   }
+    }
+   
 </script>
 
 <style lang="scss">
