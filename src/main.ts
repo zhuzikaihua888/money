@@ -15,6 +15,15 @@ Vue.component('Layout',Layout)
 Vue.component('Icon',Icon)
 
 window.tagList= tagModel.fetch();
+window.createTag=(name:string){
+  if(name){ 
+    const message=tagModel.create(name);
+    if(message==='duplicated'){
+    window.alert('标签重复')
+    }
+}
+
+
 
 
 new Vue({

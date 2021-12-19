@@ -21,4 +21,5 @@ type RecordItem={
 
   interface window{
     tagList:Tag[]
+    createTag:(name:string)=> void
   }

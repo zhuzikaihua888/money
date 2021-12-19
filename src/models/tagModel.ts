@@ -42,12 +42,9 @@ const tagModel: TagModel={
    this.data.splice(index,1)
    this.save()
    return true
-
     },
     save(){
         window.localStorage.setItem(localStorageKeyName,JSON.stringify(this.data));
     },
-  
 }
-
 export default tagModel;

@@ -5,7 +5,6 @@
  </button>
     </div>
 </template>
-
 <script>
     export default {        
     }
@@ -17,7 +16,6 @@
   border: none; 
   border-radius: 4px;
   color:black;
-
   //居中
   display: block;
   margin: 0 auto;
