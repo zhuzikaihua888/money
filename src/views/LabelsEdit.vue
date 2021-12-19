@@ -25,30 +25,32 @@ fieldName="标签" placeholder="请输入标签名" />
  import {Component} from 'vue-property-decorator';
  import Notes from '@/components/Notes.vue';
  import Button from '@/components/Button.vue';
+ import store from '@/store/index2';
    @Component({
      components:{Notes,Button}
    })
    export default class  LabelsEdit  extends Vue {
-     tag:{id:string,name:String}=undefined;
+     tag?:Tag=undefined;
       created(){
         //获取到id
-        const id=this.$route.params.id
-        const tag=window.findTag(id)
-        if(tag){
+       this.tag=store.findTag(this.$route.params.id)
+        if(!this.tag){
       this.tag=tag
         }else{
        //可以回退到之前的页面
           this.$router.replace('/404');
         }    
-      }     
-   updateTag(name){
+      }   
+
+   updateTag(name:String){
     if(this.tag){
-    window.updateTag(this.tag.id,name)
+    store.updateTag(this.tag.id,name)
     }
    }
+
    deleteTag(){
    if(this.tag){
-      if(window.deleteTag(this.tag.id)){
+      if(store.deleteTag(this.tag.id)){
         this.$router.back();
       }
      }else{

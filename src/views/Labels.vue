@@ -2,8 +2,8 @@ import Icon from '@/components/Icon.vue';
 import Tags from '../components/Tags.vue';
 import Labels from '@/views/Labels.vue';
 import { Vue } from 'vue-property-decorator';
+
 <template>
- 
     <Layout>
        <div class="tags">
            <router-link :to="`/labels/edit/${tag.id}`" class="tag" v-for="tag in tags" :key="tag.id">
@@ -20,21 +20,20 @@ import { Vue } from 'vue-property-decorator';
 <script lang='ts'>
    import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
-import tagModel  from '@/models/tagModel.ts';
 import Button from '@/components/Button.vue';
+import store from '@/store/index2.ts'
    @Component({
      components:{Button}
    })
    export default class Labels extends Vue{
-   tags=window.tagList;
+   tags=store.tagList;
  creatTag(){
      const name=window.prompt('请输入标签名') ;
      if(name){
-       window.createTag(name)
+       store.createTag(name)
      }
      }
-    }
-   
+    }   
 </script>
 
 <style lang="scss">

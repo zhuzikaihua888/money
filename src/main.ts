@@ -13,8 +13,9 @@ Vue.config.productionTip = false
 Vue.component('Nav',Nav)
 Vue.component('Layout',Layout)
 Vue.component('Icon',Icon)
-//全局变量太多 太依赖window
-window.tagList= tagModel.fetch();
+
+
+/* window.tagList= tagModel.fetch();
 window.findTag=(id:string)=>{
  return window.tagList.filter(t=>t.id===id)[0]
 };
@@ -38,7 +39,7 @@ window.deleteTag=(id:string)=>{
 window.updateTag=(id:string,name:string)=>{
   return tagModel.update(id,name)
 };
-window.moduleList=model.fetch()
+window.moduleList=model.fetch() */
 
 
 new Vue({

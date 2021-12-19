@@ -23,16 +23,16 @@ import Types from '@/components/Types.vue';
 import Notes from '@/components/Notes.vue';
 import Tags from '@/components/Tags.vue';
 import model from '@/models/model';
-
+import store from '@/store/index2.ts'
         
 //申明类型 
  @Component({
         components: { NumberPad, Types, Notes, Tags } //组件引用
     })
   export default class Money  extends Vue{
-    tags=window.tagList;  
+    tags=store.tagList;  
    //JSON.parse解析字符串获取数据
-  recordList = window.moduleList;
+  recordList = store.moduleList;
    record:RecordItem={tages:[],notes:'',type:'-',amount:0,};
    onupdataTags(value:string []){
    this.record.tages=value;
