@@ -60,7 +60,6 @@ import Button from '@/components/Button.vue';
   border: none; 
   border-radius: 4px;
   color:black;
-
   //居中
   display: block;
   margin: 0 auto;
@@ -68,8 +67,4 @@ import Button from '@/components/Button.vue';
   padding:0px 16px;
   }
 }
-
-
-
-
 </style>

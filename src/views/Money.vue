@@ -24,10 +24,7 @@ import Notes from '@/components/Notes.vue';
 import Tags from '@/components/Tags.vue';
 import model from '@/models/model';
 
-          
-const recordList:RecordItem[]=model.fetch()
-//const tagList= tagModel.fetch() 
-
+        
 //申明类型 
  @Component({
         components: { NumberPad, Types, Notes, Tags } //组件引用
@@ -35,7 +32,7 @@ const recordList:RecordItem[]=model.fetch()
   export default class Money  extends Vue{
     tags=window.tagList;  
    //JSON.parse解析字符串获取数据
-  recordList: RecordItem[] = recordList;
+  recordList = window.moduleList;
    record:RecordItem={tages:[],notes:'',type:'-',amount:0,};
    onupdataTags(value:string []){
    this.record.tages=value;
@@ -53,7 +50,6 @@ const recordList:RecordItem[]=model.fetch()
    }
 @Watch('recordList')
 onRecorddataChange(){
- //保存数据
  model.save(this.recordList)
 }
     }

@@ -25,4 +25,6 @@ type RecordItem={
     deleteTag:(id:string)=>boolean |undefined
     updateTag:(id:string,name:string)=>'success' | 'not found' | 'duplicated'
     findTag:(id:string)=>tag
+    moduleList:RecordItem[]
+    
   }
