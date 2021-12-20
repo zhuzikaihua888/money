@@ -2,8 +2,8 @@ import tagModel from '@/models/tagModel';
 import model from '@/models/model';
 const store={
    tagList: tagModel.fetch(),
-    findTag:(id:string)=>{
-     return window.tagList.filter(t=>t.id===id)[0]
+    findTag(id:string){
+     return this.tagList.filter(t=>t.id===id)[0];
     },
     createTag:(name:string) =>{
       if(name){ 

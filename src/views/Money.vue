@@ -24,6 +24,7 @@ import Notes from '@/components/Notes.vue';
 import Tags from '@/components/Tags.vue';
 import model from '@/models/model';
 import store from '@/store/index2.ts'
+console.log(store)
         
 //申明类型 
  @Component({
