@@ -43,14 +43,13 @@ fieldName="标签" placeholder="请输入标签名" />
        //可以回退到之前的页面
           this.$router.replace('/404');
         }    
-      }   
-        
+      }       
    updateTag(name:String){
     if(this.tag){
     store.updateTag(this.tag.id,name)
     }
-   }
-   deleteTag(){
+   };
+  deleteTag(){
    if(this.tag){
       if(store.deleteTag(this.tag.id)){
         this.$router.back();
