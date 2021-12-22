@@ -10,7 +10,7 @@ import content from '../shims-vue';
    <Notes fieldName="备注" 
     placeholder="在这里输入内容"  
     @update:value="onupdateNotes"/>
-   <Tags :data-source.sync="tags" @update:value="onupdateTags"/>       
+   <Tags/>       
    </Layout>
 </div>
 </template>
@@ -31,13 +31,11 @@ import clone from '@/creatId/clone.ts'
         components: { NumberPad, Types, Notes, Tags } //组件引用
     })
   export default class Money  extends Vue{
-    tags=store. fetchTags();  
+
    //JSON.parse解析字符串获取数据
   recordList = store.fetchRecords();
    record:RecordItem={tags:[],notes:'',type:'-',amount:0,};
-   onupdateTags(value:string[]){
-   this.record.tags=value;
-   };
+
    onupdateNotes(value:string){ 
    this.record.notes=value;
    };
