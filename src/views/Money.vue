@@ -4,7 +4,7 @@ import content from '../shims-vue';
 <template>
 <div>
  <Layout class-prefix="layout">  
-   {{recordList}}
+   
    <NumberPad @update:value="onupdateAmount"  @x="RecordData"/>
    <Types :value.sync="record.type" />
    <Notes fieldName="备注" 
@@ -28,14 +28,19 @@ import clone from '@/creatId/clone.ts'
         
 //申明类型 
  @Component({
-        components: { NumberPad, Types, Notes, Tags } //组件引用
+        components: { NumberPad, Types, Notes, Tags } ,//组件引用
+        computed:{
+        recordList(){
+        return store.recordList
+      }
+    }
     })
+
   export default class Money  extends Vue{
 
    //JSON.parse解析字符串获取数据
-  recordList = store.fetchRecords();
+  //recordList = store.fetchRecords();
    record:RecordItem={tags:[],notes:'',type:'-',amount:0,};
-
    onupdateNotes(value:string){ 
    this.record.notes=value;
    };

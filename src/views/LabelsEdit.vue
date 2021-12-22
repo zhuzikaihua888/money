@@ -26,7 +26,7 @@ fieldName="标签" placeholder="请输入标签名" />
  import Notes from '@/components/Notes.vue';
  import Button from '@/components/Button.vue';
  import store from '@/store/index2.ts';
- console.log(store)
+ 
 
    @Component({
      components:{Notes,Button}
