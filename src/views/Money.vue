@@ -33,7 +33,7 @@ import clone from '@/creatId/clone.ts'
   export default class Money  extends Vue{
     tags=store.tagList;  
    //JSON.parse解析字符串获取数据
-  recordList = store.moduleList;
+  recordList = store.fetchRecords();
    record:RecordItem={tags:[],notes:'',type:'-',amount:0,};
    onupdateTags(value:string[]){
    this.record.tags=value;
@@ -49,7 +49,7 @@ import clone from '@/creatId/clone.ts'
    }
  @Watch('recordList')
 onRecordDataChange(){
- store.saveRecordList()
+ store.saveRecords()
 }
     } 
 </script>
