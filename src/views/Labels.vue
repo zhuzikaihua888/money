@@ -12,7 +12,7 @@ import { Vue } from 'vue-property-decorator';
             </router-link>
        </div> 
        <div class="wrapper" >
-           <Button class="delete" @click="creatTag">新建标签</Button>
+           <Button class="delete" @click="createTag">新建标签</Button>
        </div>   
     </Layout>
 </template>
@@ -26,8 +26,8 @@ import store from '@/store/index2.ts'
      components:{Button}
    })
    export default class Labels extends Vue{
-   tags=store.tagList;
- creatTag(){
+   tags=store.fetchTags();
+   createTag(){
      const name=window.prompt('请输入标签名') ;
      if(name){
        store.createTag(name)

@@ -10,12 +10,12 @@ import Layout from '@/components/Layout.vue';
 
 <div class="from-wrapper">
 <Notes :value="tag.name"  
-@update:value="updateTag"
+@update:value="update"
 fieldName="标签" placeholder="请输入标签名" />
 </div>
 
 <div class="button-wrapper">
-<Button @click="deleteTag">删除标签</Button>
+<Button @click="remove">删除标签</Button>
 </div>                  
 
 </Layout>
@@ -27,12 +27,13 @@ fieldName="标签" placeholder="请输入标签名" />
  import Button from '@/components/Button.vue';
  import store from '@/store/index2.ts';
  console.log(store)
+
    @Component({
      components:{Notes,Button}
    })
    export default class  LabelsEdit  extends Vue {
      tag:{id:string,name:String}=undefined;
-      created(){
+     created(){
         //获取到id
         const id=this.$route.params.id
         const tag=store.findTag(id)
@@ -43,15 +44,15 @@ fieldName="标签" placeholder="请输入标签名" />
        //可以回退到之前的页面
           this.$router.replace('/404');
         }    
-      }       
-   updateTag(name:String){
+      };       
+   update(name:String){
     if(this.tag){
     store.updateTag(this.tag.id,name)
     }
    };
-  deleteTag(){
+   remove(){
    if(this.tag){
-      if(store.deleteTag(this.tag.id)){
+      if(store.removeTag(this.tag.id)){
         this.$router.back();
       }
      }else{

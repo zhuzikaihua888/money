@@ -31,7 +31,7 @@ import clone from '@/creatId/clone.ts'
         components: { NumberPad, Types, Notes, Tags } //组件引用
     })
   export default class Money  extends Vue{
-    tags=store.tagList;  
+    tags=store. fetchTags();  
    //JSON.parse解析字符串获取数据
   recordList = store.fetchRecords();
    record:RecordItem={tags:[],notes:'',type:'-',amount:0,};
@@ -53,7 +53,6 @@ onRecordDataChange(){
 }
     } 
 </script>
-
 
 <style lang="scss">
 .layout-content{ 
