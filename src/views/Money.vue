@@ -5,12 +5,12 @@ import content from '../shims-vue';
 <div>
  <Layout class-prefix="layout">  
    {{recordList}}
-   <NumberPad @update:value="onupdataAmount"  @x="Recorddata"/>
+   <NumberPad @update:value="onupdateAmount"  @x="RecordData"/>
    <Types :value.sync="record.type" />
    <Notes fieldName="备注" 
     placeholder="在这里输入内容"  
-    @update:value="onupdataNotes"/>
-   <Tags :data-source.sync="tags" @update:value="onupdataTags"/>       
+    @update:value="onupdateNotes"/>
+   <Tags :data-source.sync="tags" @update:value="onupdateTags"/>       
    </Layout>
 </div>
 </template>
@@ -24,7 +24,7 @@ import Notes from '@/components/Notes.vue';
 import Tags from '@/components/Tags.vue';
 import model from '@/models/model';
 import store from '@/store/index2.ts'
-console.log(store)
+import clone from '@/creatId/clone.ts'
         
 //申明类型 
  @Component({
@@ -34,27 +34,26 @@ console.log(store)
     tags=store.tagList;  
    //JSON.parse解析字符串获取数据
   recordList = store.moduleList;
-   record:RecordItem={tages:[],notes:'',type:'-',amount:0,};
-   onupdataTags(value:string []){
-   this.record.tages=value;
+   record:RecordItem={tags:[],notes:'',type:'-',amount:0,};
+   onupdateTags(value:string[]){
+   this.record.tags=value;
    };
-   onupdataNotes(value:string){ 
+   onupdateNotes(value:string){ 
    this.record.notes=value;
    };
-  onupdataAmount(value:string){
+  onupdateAmount(value:string){
   this.record.amount=parseFloat(value);
    };
-   Recorddata(){
-     const record2: RecordItem = model.clone(this.record);
-      record2.createdAt = new Date();
-      this.recordList.push(record2);
+   RecordData(){
+     store.createRecord(this.record)
    }
-@Watch('recordList')
-onRecorddataChange(){
- model.save(this.recordList)
+ @Watch('recordList')
+onRecordDataChange(){
+ store.saveRecordList()
 }
-    }
+    } 
 </script>
+
 
 <style lang="scss">
 .layout-content{ 

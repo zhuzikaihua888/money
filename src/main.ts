@@ -41,7 +41,6 @@ window.updateTag=(id:string,name:string)=>{
 };
 window.moduleList=model.fetch() */
 
-
 new Vue({
   router:router,
   store,
