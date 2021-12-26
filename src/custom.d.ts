@@ -23,7 +23,7 @@ type RecordItem={
      tagList:Tag[]
     createTag:(name:string)=> void
     deleteTag:(id:string)=>boolean |undefined
-    updateTag:(id:string,name:string)=>'success' | 'not found' | 'duplicated'
+    updateTag:(state:string,id:string,name:string)=>'success' | 'not found' | 'duplicated'
     findTag:(id:string)=>tag
     moduleList:RecordItem[] 
     

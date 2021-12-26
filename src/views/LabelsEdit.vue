@@ -30,39 +30,29 @@ fieldName="标签" placeholder="请输入标签名" />
 
    @Component({
      components:{Notes,Button},
-     computed:{
-            tagList(){
-                return this.$store.state.tagList;
-            }
-        }
    })
    export default class  LabelsEdit  extends Vue {
-     tag:{id:string,name:String}=undefined;
-     
+     //tag:{id:string,name:String}=undefined;
+     get tag(){
+          return this.$store.state.currentTag;
+        };
      created(){
-        this.$store.commit('fetchTags')
-        const id=this.$route.params.id
-        const tag=this.$store.commit('findTag',id)
-        if(tag){
-      this.tag=tag
-        }else{
-       //可以回退到之前的页面
+      const id =this.$route.params.id
+       this.$store.commit('setCurrentTag',id)
+        if(!this.tag){
           this.$router.replace('/404');
         }    
       };       
-   update(name:String){
+    update(name:String){
+    console.log(name)
     if(this.tag){
-    store.updateTag(this.tag.id,name)
+    this.$store.commit('updateTag',{id:this.tag.id,name})
     }
-   };
+   }; 
    remove(){
    if(this.tag){
-      if(store.removeTag(this.tag.id)){
-        this.$router.back();
-      }
-     }else{
-       window.alert('删除失败')
-     }
+    this.$store.commit('removeTag',this.tag.id);  
+   }
    };
    goBack() {
       this.$router.back();
