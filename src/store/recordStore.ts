@@ -1,10 +1,10 @@
-
+/* 
  import clone from '@/creatId/clone'
  const localStorageKeyName='recordList';
  
  const recordStore= {
     recordList: [] as RecordItem[],
-    fetchRecords() {
+    state.recordList() {
       this.recordList = JSON.parse(window.localStorage.getItem(localStorageKeyName) || '[]') as RecordItem[];
       return this.recordList;
     },
@@ -20,7 +20,7 @@
   };
   recordStore.fetchRecords();
   
-  export default recordStore; 
+  export default recordStore;  */
  
 
 

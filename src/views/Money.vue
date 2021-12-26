@@ -11,7 +11,7 @@ import content from '../shims-vue';
     placeholder="在这里输入内容"  
     @update:value="onupdateNotes"/>
    <Tags/>       
-   </Layout>
+  </Layout>
 </div>
 </template>
 
@@ -23,24 +23,24 @@ import Types from '@/components/Types.vue';
 import Notes from '@/components/Notes.vue';
 import Tags from '@/components/Tags.vue';
 import model from '@/models/model';
-import store from '@/store/index2.ts'
+import store from '@/store/index.ts'
 import clone from '@/creatId/clone.ts'
+
         
 //申明类型 
  @Component({
         components: { NumberPad, Types, Notes, Tags } ,//组件引用
         computed:{
         recordList(){
-        return store.recordList
-      }
+        return this.$store.state.recordList
+      },
     }
     })
-
   export default class Money  extends Vue{
-
-   //JSON.parse解析字符串获取数据
-  //recordList = store.fetchRecords();
    record:RecordItem={tags:[],notes:'',type:'-',amount:0,};
+   created(){
+   this.$store.commit('fetchRecords')
+   };
    onupdateNotes(value:string){ 
    this.record.notes=value;
    };
@@ -48,14 +48,15 @@ import clone from '@/creatId/clone.ts'
   this.record.amount=parseFloat(value);
    };
    RecordData(){
-     store.createRecord(this.record)
+   this.$store.commit('createRecord',this.record)
    }
- @Watch('recordList')
+@Watch('recordList')
 onRecordDataChange(){
- store.saveRecords()
+this.$store.commit('saveRecords')
 }
-    } 
+ } 
 </script>
+
 
 <style lang="scss">
 .layout-content{ 
