@@ -6,7 +6,7 @@ import { Vue } from 'vue-property-decorator';
 <template>
     <Layout>
        <div class="tags">
-           <router-link :to="`/labels/edit/${tag.id}`" class="tag" v-for="tag in tags" :key="tag.id">
+           <router-link :to="`/labels/edit/${tag.id}`" class="tag" v-for="tag in tagList" :key="tag.id">
                {{tag.name}}
                <Icon name="right"/>
             </router-link>
@@ -21,16 +21,24 @@ import { Vue } from 'vue-property-decorator';
    import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 import Button from '@/components/Button.vue';
-import store from '@/store/index2.ts'
+import store from '@/store/index.ts'
    @Component({
-     components:{Button}
+     components:{Button},
+     computed:{
+            tagList(){
+                return this.$store.state.tagList;
+            }
+        }
    })
    export default class Labels extends Vue{
-   tags=store.fetchTags();
+    created(){
+    this.$store.commit('fetchTags')
+    };
+ 
    create(){
      const name=window.prompt('请输入标签名') ;
      if(name){
-       store.createTag(name)
+       this.$store.commit('createTag',name)
      }
      }
     }   
