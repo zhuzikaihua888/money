@@ -30,14 +30,13 @@ import clone from '@/creatId/clone.ts'
 //申明类型 
  @Component({
         components: { NumberPad, Types, Notes, Tags } ,//组件引用
-        computed:{
-        recordList(){
-        return this.$store.state.recordList
-      },
-    }
+  
     })
   export default class Money  extends Vue{
-   record:RecordItem={tags:[],notes:'',type:'-',amount:0,};
+    get recordList(){
+        return this.$store.state.recordList
+      };
+    record:RecordItem={tags:[],notes:'',type:'-',amount:0,};
    created(){
    this.$store.commit('fetchRecords')
    };
