@@ -12,7 +12,7 @@ import { Vue } from 'vue-property-decorator';
             </router-link>
        </div> 
        <div class="wrapper" >
-           <Button class="delete" @click="create">新建标签</Button>
+           <Button class="delete" @click="createTag">新建标签</Button>
        </div>   
     </Layout>
 </template>
@@ -31,12 +31,12 @@ import store from '@/store/index.ts'
         }
    })
    export default class Labels extends Vue{
-    created(){
+   
+   created(){
     this.$store.commit('fetchTags')
     };
- 
-   create(){
-     const name=window.prompt('请输入标签名') ;
+   createTag(){
+    const name=window.prompt('请输入标签名') ;
      if(name){
        this.$store.commit('createTag',name)
      }
@@ -67,7 +67,6 @@ import store from '@/store/index.ts'
   border: none; 
   border-radius: 4px;
   color:black;
-  //居中
   display: block;
   margin: 0 auto;
   height: 40px;

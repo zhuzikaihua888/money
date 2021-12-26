@@ -38,6 +38,7 @@ fieldName="标签" placeholder="请输入标签名" />
         };
      created(){
       const id =this.$route.params.id
+      this.$store.commit('fetchTags',id)
        this.$store.commit('setCurrentTag',id)
         if(!this.tag){
           this.$router.replace('/404');
